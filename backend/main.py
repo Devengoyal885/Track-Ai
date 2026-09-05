@@ -20,7 +20,7 @@ from .simulation.engine import simulation_engine
 # ── Socket.IO server ─────────────────────────────────
 sio = socketio.AsyncServer(
     async_mode="asgi",
-    cors_allowed_origins=settings.cors_origins_list,
+    cors_allowed_origins="*" if "*" in settings.cors_origins_list else settings.cors_origins_list,
     logger=False,
     engineio_logger=False,
 )

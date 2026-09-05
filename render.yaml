@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: track-ai-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: SIM_ENABLED
+        value: "true"
+      - key: SIM_INTERVAL_SECONDS
+        value: "3.0"
+      - key: SIM_VEHICLE_COUNT
+        value: "20"

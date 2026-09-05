@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     backend_host: str = "0.0.0.0"
     backend_port: int = 8000
     database_url: str = "sqlite:///./trackai.db"
-    cors_origins: str = "http://localhost:5173"
+    cors_origins: str = "*"
 
     # Simulation
     sim_interval_seconds: float = 3.0
@@ -19,7 +19,9 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> List[str]:
-        return [origin.strip() for origin in self.cors_origins.split(",")]
+        if self.cors_origins.strip() == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
 
     class Config:
         env_file = ".env"
