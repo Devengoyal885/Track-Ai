@@ -2,7 +2,7 @@
  * TrackAI — App Shell (Layout wrapper & Real-Time Socket Connection)
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
@@ -14,9 +14,10 @@ import { ShieldAlert, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AppShell() {
-  const { setSimulationTick, addTelemetryDetection, setStats } = useSimulationStore();
+  const { setSimulationTick, addTelemetryDetection, setStats, stepClientSimulation } = useSimulationStore();
   const { addAlert, setAlerts } = useAlertStore();
   const [activeToast, setActiveToast] = useState<AlertItem | null>(null);
+  const lastSocketTickRef = useRef<number>(0);
 
   useEffect(() => {
     // Initial fetch of alerts & stats
@@ -32,6 +33,7 @@ export default function AppShell() {
     const socket = getSocket();
 
     socket.on('simulation_tick', (data: any) => {
+      lastSocketTickRef.current = Date.now();
       setSimulationTick(data);
     });
 
@@ -51,13 +53,22 @@ export default function AppShell() {
       }, 6000);
     });
 
+    // Fallback Client-side Simulation Loop for Standalone/Netlify Deployment
+    const clientInterval = setInterval(() => {
+      // If no socket tick received in last 2.5s, step client simulation
+      if (Date.now() - lastSocketTickRef.current > 2500) {
+        stepClientSimulation();
+      }
+    }, 1500);
+
     return () => {
       socket.off('simulation_tick');
       socket.off('telemetry');
       socket.off('detection_new');
       socket.off('alert_new');
+      clearInterval(clientInterval);
     };
-  }, [setSimulationTick, addTelemetryDetection, addAlert, setAlerts, setStats]);
+  }, [setSimulationTick, addTelemetryDetection, addAlert, setAlerts, setStats, stepClientSimulation]);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--color-bg-deep)' }}>
