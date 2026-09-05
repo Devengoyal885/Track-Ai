@@ -1,0 +1,114 @@
+/* ═══════════════════════════════════════════════════════════
+   TrackAI — Design Tokens (CSS Custom Properties)
+   Mission-control dark theme with glassmorphism accents
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color Palette ──────────────────────────────────── */
+
+  /* Background layers (dark mode - default) */
+  --color-bg-deep: #070D1A;
+  --color-bg-primary: #0B1120;
+  --color-bg-secondary: #111827;
+  --color-bg-elevated: #1E293B;
+  --color-bg-surface: #1a2235;
+
+  /* Primary accent — electric cyan/blue */
+  --color-primary: #38BDF8;
+  --color-primary-hover: #0EA5E9;
+  --color-primary-glow: rgba(56, 189, 248, 0.3);
+  --color-primary-subtle: rgba(56, 189, 248, 0.1);
+
+  /* Secondary accent — violet */
+  --color-secondary: #818CF8;
+  --color-secondary-hover: #6366F1;
+  --color-secondary-glow: rgba(129, 140, 248, 0.3);
+  --color-secondary-subtle: rgba(129, 140, 248, 0.1);
+
+  /* Semantic colors */
+  --color-success: #10B981;
+  --color-success-glow: rgba(16, 185, 129, 0.3);
+  --color-warning: #F59E0B;
+  --color-warning-glow: rgba(245, 158, 11, 0.3);
+  --color-danger: #EF4444;
+  --color-danger-glow: rgba(239, 68, 68, 0.3);
+
+  /* Text */
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-text-accent: #38BDF8;
+
+  /* Borders */
+  --color-border: rgba(148, 163, 184, 0.12);
+  --color-border-hover: rgba(148, 163, 184, 0.25);
+  --color-border-accent: rgba(56, 189, 248, 0.3);
+
+  /* ── Glassmorphism ──────────────────────────────────── */
+  --glass-bg: rgba(17, 24, 39, 0.6);
+  --glass-bg-heavy: rgba(17, 24, 39, 0.85);
+  --glass-border: rgba(148, 163, 184, 0.1);
+  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* ── Typography ─────────────────────────────────────── */
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Spacing ────────────────────────────────────────── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* ── Border Radius ──────────────────────────────────── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ────────────────────────────────────── */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index Layers ─────────────────────────────────── */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ── Sidebar ────────────────────────────────────────── */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --topbar-height: 56px;
+}
+
+/* ── Light Mode Theme ─────────────────────────────────── */
+:root.light {
+  --color-bg-deep: #F8FAFC;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F1F5F9;
+  --color-bg-elevated: #E2E8F0;
+  --color-bg-surface: #F1F5F9;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-border-hover: rgba(15, 23, 42, 0.2);
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
